@@ -1,6 +1,8 @@
 package com.mitrais.registration.controller;
 
 import com.mitrais.registration.entity.User;
+import com.mitrais.registration.model.ApiCodeReference;
+import com.mitrais.registration.model.ApiResponse;
 import com.mitrais.registration.model.UserRequest;
 import com.mitrais.registration.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("user")
+@RequestMapping("/api/v1/users")
 public class UserController {
 
     private final UserService userService;
@@ -25,8 +27,9 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<User> createUser(@Valid @RequestBody UserRequest requestUser) {
+    public ResponseEntity<ApiResponse> createUser(@Valid @RequestBody UserRequest requestUser) {
         User user = userService.createUser(requestUser);
-        return new ResponseEntity<>(user, HttpStatus.OK);
+        ApiResponse apiResponse = new ApiResponse(ApiCodeReference.SUCCESS,"insert thành công", user);
+        return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
 }
