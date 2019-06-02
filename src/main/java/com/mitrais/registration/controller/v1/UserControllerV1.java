@@ -1,4 +1,4 @@
-package com.mitrais.registration.controller;
+package com.mitrais.registration.controller.v1;
 
 import com.mitrais.registration.entity.User;
 import com.mitrais.registration.model.ApiCodeReference;
@@ -17,12 +17,12 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v1/users")
-public class UserController {
+public class UserControllerV1 {
 
     private final UserService userService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserControllerV1(UserService userService) {
         this.userService = userService;
     }
 

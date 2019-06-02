@@ -18,19 +18,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User createUser(UserRequest userRequest) {
+    public User createUser(UserRequest userRequest) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
         User user = mapper.convertValue(userRequest, User.class);
+        if (userRepository.existsByPhoneNumber(userRequest.getPhoneNumber())) {
+            throw new Exception("Mobile number should be unique.");
+        }
+        if (userRepository.existsByEmail(userRequest.getEmail())) {
+            throw new Exception("Email should be unique");
+        }
         return userRepository.save(user);
-    }
-
-    @Override
-    public boolean isExistedPhone(String phone) {
-        return userRepository.findUserByPhoneNumber(phone) != null;
-    }
-
-    @Override
-    public boolean isExistedEmail(String email) {
-        return userRepository.findUserByEmail(email) != null;
     }
 }
