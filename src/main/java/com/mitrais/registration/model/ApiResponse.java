@@ -1,6 +1,5 @@
 package com.mitrais.registration.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,9 +7,14 @@ import lombok.Setter;
 @Setter
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
 public class ApiResponse {
     private String code;
     private String message;
     private Object data;
+
+    public ApiResponse(String code, Object data) {
+        this.code = code;
+        this.message = ApiCodeReference.getMessage(code);
+        this.data = data;
+    }
 }

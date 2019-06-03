@@ -1,8 +1,6 @@
 package com.mitrais.registration.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.mitrais.registration.entity.User;
 import com.mitrais.registration.model.UserRequest;
 import com.mitrais.registration.repository.UserRepository;
@@ -12,24 +10,26 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
+    private static final String PHONE_EXISTED = "USER0001";
+    private static final String EMAIL_EXITED = "USER0002";
+
     private final UserRepository userRepository;
+    private final ObjectMapper objectMapper;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository, ObjectMapper objectMapper) {
         this.userRepository = userRepository;
+        this.objectMapper = objectMapper;
     }
 
     @Override
     public User createUser(UserRequest userRequest) throws Exception {
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.registerModule(new JavaTimeModule());
-        mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
-        User user = mapper.convertValue(userRequest, User.class);
+        User user = objectMapper.convertValue(userRequest, User.class);
         if (userRepository.existsByPhoneNumber(userRequest.getPhoneNumber())) {
-            throw new Exception("Mobile number should be unique.");
+            throw new Exception(PHONE_EXISTED);
         }
         if (userRepository.existsByEmail(userRequest.getEmail())) {
-            throw new Exception("Email should be unique");
+            throw new Exception(EMAIL_EXITED);
         }
         return userRepository.save(user);
     }

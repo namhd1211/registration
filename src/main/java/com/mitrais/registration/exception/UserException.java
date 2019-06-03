@@ -20,13 +20,13 @@ public class UserException {
     public ResponseEntity<ApiResponse> invalidInput(MethodArgumentNotValidException ex) {
         BindingResult result = ex.getBindingResult();
         List<String> errors = ValidationUtil.fromBindingError(result);
-        ApiResponse apiResponse = new ApiResponse(ApiCodeReference.BAD_REQUEST, errors.get(0), Collections.emptyList());
+        ApiResponse apiResponse = new ApiResponse(errors.get(0), Collections.emptyList());
         return new ResponseEntity<>(apiResponse, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiResponse> invalidInput(Exception ex) {
-        ApiResponse apiResponse = new ApiResponse(ApiCodeReference.BAD_REQUEST, ex.getMessage(), Collections.emptyList());
+        ApiResponse apiResponse = new ApiResponse(ex.getMessage(), Collections.emptyList());
         return new ResponseEntity<>(apiResponse, HttpStatus.BAD_REQUEST);
     }
 }
