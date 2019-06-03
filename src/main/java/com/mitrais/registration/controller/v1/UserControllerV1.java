@@ -29,7 +29,7 @@ public class UserControllerV1 {
     @PostMapping("/register")
     public ResponseEntity<ApiResponse> createUser(@Valid @RequestBody UserRequest requestUser) throws Exception {
         User user = userService.createUser(requestUser);
-        ApiResponse apiResponse = new ApiResponse(ApiCodeReference.SUCCESS,"insert thành công", user);
-        return new ResponseEntity<>(apiResponse, HttpStatus.OK);
+        ApiResponse apiResponse = new ApiResponse(ApiCodeReference.SUCCESS,"Insert User successfully", user);
+        return new ResponseEntity<>(apiResponse, HttpStatus.CREATED);
     }
 }

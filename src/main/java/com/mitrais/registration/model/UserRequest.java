@@ -1,22 +1,21 @@
 package com.mitrais.registration.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.mitrais.registration.validation.PhoneConstraint;
 import lombok.Data;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Past;
 import java.time.LocalDate;
 
 @Data
 public class UserRequest {
-    @NotNull(message = "First name is required")
+    @NotEmpty(message = "First name is required")
     private String firstName;
-    @NotNull(message = "Last name is required")
+    @NotEmpty(message = "Last name is required")
     private String lastName;
 
-    @NotNull(message = "Mobile number is required.")
+    @NotEmpty(message = "Phone number is required.")
     @PhoneConstraint
     private String phoneNumber;
     @Past
@@ -24,7 +23,7 @@ public class UserRequest {
 
     private Gender gender;
 
-    @NotNull(message = "Email is required")
+    @NotEmpty(message = "Email is required")
     @Email(message = "Email is invalid")
     private String email;
 }
