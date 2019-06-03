@@ -1,6 +1,12 @@
 package com.mitrais.registration.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+import com.mitrais.registration.model.Gender;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -26,7 +32,7 @@ public class User {
     @Column(name = "phone", unique = true)
     private String phoneNumber;
     private LocalDate dob;
-    private boolean gender;
+    private Gender gender;
     @Column(unique = true)
     private String email;
     @JsonIgnore

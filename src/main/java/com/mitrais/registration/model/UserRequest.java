@@ -1,5 +1,6 @@
 package com.mitrais.registration.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.mitrais.registration.validation.PhoneConstraint;
 import lombok.Data;
 
@@ -21,7 +22,7 @@ public class UserRequest {
     @Past
     private LocalDate dob;
 
-    private boolean gender;
+    private Gender gender;
 
     @NotNull(message = "Email is required")
     @Email(message = "Email is invalid")

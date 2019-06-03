@@ -1,6 +1,8 @@
 package com.mitrais.registration.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.mitrais.registration.entity.User;
 import com.mitrais.registration.model.UserRequest;
 import com.mitrais.registration.repository.UserRepository;
@@ -20,6 +22,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public User createUser(UserRequest userRequest) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new JavaTimeModule());
+        mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
         User user = mapper.convertValue(userRequest, User.class);
         if (userRepository.existsByPhoneNumber(userRequest.getPhoneNumber())) {
             throw new Exception("Mobile number should be unique.");
