@@ -17,7 +17,7 @@ https://github.com/namhd1211/registration.git
 ```
 #### 2. Create Mysql database
 ```
-create database mitrais
+create database registration
 ```
 #### 3. Change mysql username and password as per your installation
 ```
