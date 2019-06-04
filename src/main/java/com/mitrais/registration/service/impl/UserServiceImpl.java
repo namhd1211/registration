@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
-    private static final String PHONE_EXISTED = "USER0001";
-    private static final String EMAIL_EXITED = "USER0002";
+    private static final String PHONE_EXISTED = "USER0002";
+    private static final String EMAIL_EXITED = "USER0001";
 
     private final UserRepository userRepository;
     private final ObjectMapper objectMapper;
