@@ -14,8 +14,8 @@ public class ApiCodeReference {
 
     public static String getMessage(String errorCode) {
         try {
-            var bundle = ResourceBundle.getBundle("ErrorBundle");
-            var errorInBundle = bundle.getString(errorCode);
+            ResourceBundle resourceBundle = ResourceBundle.getBundle("ErrorBundle");
+            String errorInBundle = resourceBundle.getString(errorCode);
 
             if (!StringUtils.isEmpty(errorInBundle)) {
                 return errorInBundle;
