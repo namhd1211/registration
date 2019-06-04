@@ -26,9 +26,8 @@ public class UserServiceImplTest {
     @Mock
     private ObjectMapper objectMapper;
 
-    private final User user = User.builder().firstName(DataTest.FIRST_NAME).lastName(DataTest.LAST_NAME).email(DataTest.EMAIL)
-            .phoneNumber(DataTest.PHONE).build();
-    private final UserRequest userRequest = new UserRequest(DataTest.FIRST_NAME, DataTest.LAST_NAME,DataTest.PHONE, DataTest.EMAIL);
+    private final User user = new User(DataTest.FIRST_NAME, DataTest.LAST_NAME, DataTest.PHONE, DataTest.EMAIL);
+    private final UserRequest userRequest = new UserRequest(DataTest.FIRST_NAME, DataTest.LAST_NAME, DataTest.PHONE, DataTest.EMAIL);
 
     @Test
     public void createUser() throws Exception {

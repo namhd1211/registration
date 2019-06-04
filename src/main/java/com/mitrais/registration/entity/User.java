@@ -1,15 +1,8 @@
 package com.mitrais.registration.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.mitrais.registration.model.Gender;
-import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -21,8 +14,6 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
-@Builder
-@NoArgsConstructor
 public class User {
     @JsonIgnore
     @Id
@@ -47,4 +38,15 @@ public class User {
     @Column(name = "last_updated")
     @UpdateTimestamp
     private LocalDateTime lastUpdated;
+
+
+    public User() {
+    }
+
+    public User(String firstName, String lastName, String phoneNumber, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+    }
 }

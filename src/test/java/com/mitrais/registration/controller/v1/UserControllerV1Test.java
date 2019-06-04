@@ -37,11 +37,10 @@ public class UserControllerV1Test {
     @InjectMocks
     private UserControllerV1 userControllerV1;
 
-    private User user =  User.builder().firstName(DataTest.FIRST_NAME).lastName(DataTest.LAST_NAME).email(DataTest.EMAIL)
-            .phoneNumber(DataTest.PHONE).build();
+    private final User user = new User(DataTest.FIRST_NAME, DataTest.LAST_NAME, DataTest.PHONE, DataTest.EMAIL);
     private final UserRequest userRequest = new UserRequest(DataTest.FIRST_NAME, DataTest.LAST_NAME,DataTest.PHONE, DataTest.EMAIL);
     private final UserRequest userRequest1 = new UserRequest(DataTest.FIRST_NAME, DataTest.LAST_NAME,DataTest.PHONE, DataTest.INVALID_EMAIL);
-    private final UserRequest userRequest2 = new UserRequest(DataTest.FIRST_NAME, DataTest.LAST_NAME,DataTest.INVALID_PHONE, DataTest.INVALID_EMAIL);
+    private final UserRequest userRequest2 = new UserRequest(DataTest.FIRST_NAME, DataTest.LAST_NAME,DataTest.INVALID_PHONE, DataTest.EMAIL);
 
     @Before
     public void setUp() {
