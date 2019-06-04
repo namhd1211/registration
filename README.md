@@ -3,7 +3,7 @@ Build Restful CRUD API for a simple Registration application using Spring Boot, 
 
 # Requirements
 ```
-Java - 1.11.x
+Java - 1.8.x
 
 Maven - 4.x.x
 
