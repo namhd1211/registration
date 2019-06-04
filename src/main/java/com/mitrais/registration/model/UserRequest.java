@@ -1,7 +1,9 @@
 package com.mitrais.registration.model;
 
 import com.mitrais.registration.validation.PhoneConstraint;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -9,6 +11,7 @@ import javax.validation.constraints.Past;
 import java.time.LocalDate;
 
 @Data
+@NoArgsConstructor
 public class UserRequest {
     public static final String FIRST_NAME_IS_REQUIRED = "USER0003";
     public static final String LAST_NAME_IS_REQUIRED = "USER0004";
@@ -32,4 +35,11 @@ public class UserRequest {
     @NotEmpty(message = EMAIL_IS_REQUIRED)
     @Email(message = INVALID_EMAIL)
     private String email;
+
+    public UserRequest(@NotEmpty(message = FIRST_NAME_IS_REQUIRED) String firstName, @NotEmpty(message = LAST_NAME_IS_REQUIRED) String lastName, @NotEmpty(message = PHONE_IS_REQUIRED) String phoneNumber, @NotEmpty(message = EMAIL_IS_REQUIRED) @Email(message = INVALID_EMAIL) String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+    }
 }

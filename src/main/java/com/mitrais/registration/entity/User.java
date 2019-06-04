@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.mitrais.registration.model.Gender;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -19,6 +20,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
+@Builder
 public class User {
     @JsonIgnore
     @Id
@@ -27,7 +29,7 @@ public class User {
     @Column(name = "first_name")
     private String firstName;
     @Column(name = "last_name")
-    private String LastName;
+    private String lastName;
 
     @Column(name = "phone", unique = true)
     private String phoneNumber;

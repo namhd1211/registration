@@ -1,11 +1,9 @@
 package com.mitrais.registration.exception;
 
-import com.mitrais.registration.model.ApiCodeReference;
 import com.mitrais.registration.model.ApiResponse;
 import com.mitrais.registration.validation.ValidationUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.CollectionUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
