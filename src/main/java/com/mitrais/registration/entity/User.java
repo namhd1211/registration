@@ -39,9 +39,6 @@ public class User {
     @UpdateTimestamp
     private LocalDateTime lastUpdated;
 
-
-
-
     public User() {
     }
 
